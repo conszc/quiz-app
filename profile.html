@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Profile</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         PROFILE CONTAINER
+    ========================== -->
+    <div class="profile-container">
+
+        <h1>User Profile</h1>
+
+        <!-- User info section -->
+        <div class="user-info">
+
+            <p><strong>Username:</strong> <span id="username">Loading...</span></p>
+
+            <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+
+            <p><strong>Total Quizzes Played:</strong> <span id="total-games">0</span></p>
+
+            <p><strong>Best Score:</strong> <span id="best-score">0</span></p>
+
+        </div>
+
+        <!-- =========================
+             QUIZ HISTORY SECTION
+        ========================== -->
+        <h2>Quiz History</h2>
+
+        <table class="history-table">
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Score</th>
+                    <th>Total Questions</th>
+                </tr>
+            </thead>
+
+            <tbody id="history-body">
+                <!-- JavaScript will insert rows here -->
+                <tr>
+                    <td colspan="3">Loading history...</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <!-- Buttons -->
+        <div class="profile-buttons">
+
+            <button onclick="goHome()">
+                Home
+            </button>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         PROFILE SCRIPT
+    ========================== -->
+    <script>
+        // Placeholder data (later comes from PHP/MySQL)
+        const user = {
+            username: "user123",
+            email: "user@example.com",
+            totalGames: 5,
+            bestScore: 9
+        };
+
+        const history = [
+            { date: "2026-05-10", score: 7, total: 10 },
+            { date: "2026-05-09", score: 9, total: 10 },
+            { date: "2026-05-08", score: 6, total: 10 }
+        ];
+
+        // Fill user info
+        document.getElementById("username").textContent = user.username;
+        document.getElementById("email").textContent = user.email;
+        document.getElementById("total-games").textContent = user.totalGames;
+        document.getElementById("best-score").textContent = user.bestScore;
+
+        // Fill history table
+        const historyBody = document.getElementById("history-body");
+        historyBody.innerHTML = "";
+
+        history.forEach(item => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${item.date}</td>
+                <td>${item.score}</td>
+                <td>${item.total}</td>
+            `;
+
+            historyBody.appendChild(row);
+        });
+
+        // Navigation functions
+        function goHome() {
+            window.location.href = "index.html";
+        }
+
+        function logout() {
+            // Later you will destroy session in PHP
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+
+</html>
