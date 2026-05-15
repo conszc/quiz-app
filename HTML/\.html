@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =========================
+         META INFORMATION
+    ========================== -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>QuizMaster | Results</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         RESULTS CONTAINER
+    ========================== -->
+    <div class="results-container">
+
+        <!-- Results Header -->
+        <h1> Quiz Complete!</h1>
+
+        <p class="results-message">
+            Here are your final quiz results.
+        </p>
+
+        <!-- Score Display -->
+        <div class="score-box">
+
+            <h2>Your Score</h2>
+
+            <p id="score-display">
+                0 / 0
+            </p>
+
+        </div>
+
+        <div class="performance-message"
+             id="performance-message">
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="results-buttons">
+
+            <button onclick="playAgain()">
+                Play Again
+            </button>
+
+            <button onclick="goHome()">
+                Home
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         RESULTS SCRIPT
+    ========================== -->
+    <script>
+
+        const score =
+              localStorage.getItem("quizScore");
+
+        const totalQuestions = 3;
+
+        const scoreDisplay =
+              document.getElementById("score-display");
+
+        const performanceMessage =
+              document.getElementById("performance-message");
+
+        scoreDisplay.innerText =
+              `${score} / ${totalQuestions}`;
+
+        if (score == totalQuestions) {
+
+            performanceMessage.innerHTML =
+                "Perfect Score! Amazing job!";
+        }
+        else if (score >= 2) {
+
+            performanceMessage.innerHTML =
+                " Great work! You did very well.";
+        }
+        else {
+
+            performanceMessage.innerHTML =
+                " Keep practicing and try again!";
+        }
+
+        function playAgain() {
+
+            window.location.href = "quiz.html";
+        }
+
+        function goHome() {
+
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+
+</html>
