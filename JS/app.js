@@ -1,6 +1,5 @@
 const quizData = [
-const questions = [
-    {
+{
         question: "According to the Bible, Moses and Aaron had a sister named what?",
         answers: [
                  "Jochebed", 
@@ -106,7 +105,6 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
-let answered = false;
 
 const questionEl = document.getElementById("question");
 const answersContainer = document.getElementById("answers-container");
@@ -114,7 +112,7 @@ const nextBtn = document.getElementById("next-btn");
 const progressBar = document.getElementById("progress-bar");
 
 function loadQuestion() {
-    answered = false;
+
     answersContainer.innerHTML = "";
 
     const currentQuiz = quizData[currentQuestion];
@@ -122,45 +120,58 @@ function loadQuestion() {
     questionEl.textContent = currentQuiz.question;
 
     currentQuiz.answers.forEach((answer, index) => {
+
         const button = document.createElement("button");
 
         button.textContent = answer;
+
         button.classList.add("answer-btn");
 
         button.addEventListener("click", () => {
-            if (answered) return;
 
-            answered = true;
-
-            const allButtons = document.querySelectorAll(".answer-btn");
+            const allButtons =
+                document.querySelectorAll(".answer-btn");
 
             allButtons.forEach(btn => {
                 btn.disabled = true;
             });
 
             if (index === currentQuiz.correct) {
-                button.classList.add("correct");
+
+                button.style.backgroundColor = "green";
+
                 score++;
+
             } else {
-                button.classList.add("wrong");
-                allButtons[currentQuiz.correct].classList.add("correct");
+
+                button.style.backgroundColor = "red";
+
+                allButtons[currentQuiz.correct]
+                    .style.backgroundColor = "green";
             }
         });
 
         answersContainer.appendChild(button);
     });
 
-    const progress = ((currentQuestion + 1) / quizData.length) * 100;
+    const progress =
+        ((currentQuestion + 1) / quizData.length) * 100;
+
     progressBar.style.width = progress + "%";
 }
 
 nextBtn.addEventListener("click", () => {
+
     currentQuestion++;
 
     if (currentQuestion < quizData.length) {
+
         loadQuestion();
+
     } else {
+
         localStorage.setItem("quizScore", score);
+
         window.location.href = "results.html";
     }
 });
