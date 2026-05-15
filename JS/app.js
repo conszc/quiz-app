@@ -165,8 +165,4 @@ nextBtn.addEventListener("click", () => {
     }
 });
 
-<<<<<<< HEAD
 loadQuestion();
-=======
-loadQuestion();
->>>>>>> da1f097 (Fix quiz next button)
