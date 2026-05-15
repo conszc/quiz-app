@@ -114,11 +114,10 @@ const questions = [
 let currentIndex = 0;
 let score = 0;
 
-const questionEl = document.getElementById("question");
-const questionNumberEl = document.getElementById("current-question");
-const scoreEl = document.getElementById("score");
-const answerButtons = document.querySelectorAll(".answer-btn");
-const nextBtn = document.getElementById("next-btn");
+document.getElementById("question");
+document.getElementById("answers-container");
+document.getElementById("next-btn");
+document.getElementById("progress-bar");
 
 // =========================
 // LOAD QUESTION FUNCTION
